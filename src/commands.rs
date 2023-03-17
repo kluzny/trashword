@@ -15,9 +15,13 @@ pub enum Commands {
 
 #[derive(Args)]
 pub struct AuthArgs {
-    /// A domain or hostname
-    #[arg(default_value_t = String::new())]
-    pub domain: String,
+    /// Optional domain or hostname
+    #[arg(short='d', long)]
+    pub domain: Option<String>,
+
+    /// Optional user or username
+    #[arg(short='u', long)]
+    pub user: Option<String>,
 
     /// send to your clipboard instead of STDOUT
     #[arg(long, short='c', default_value_t = false)]
