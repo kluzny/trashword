@@ -1,11 +1,7 @@
 use crate::encoder::encode;
 use rand::{rngs::StdRng, RngCore, SeedableRng};
 
-pub fn generate_password(length: u16) {
-    println!("{}", secure_pass(length));
-}
-
-fn secure_pass(length: u16) -> String {
+pub fn secure_pass(length: u16) -> String {
     // TODO: should error if we exhaust the buffer
     // or more robustly create buffers as needed
     let buffer = random_bytes();
