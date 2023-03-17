@@ -32,8 +32,9 @@ fn main() {
 
     match &cli.command {
         Commands::Generate(gen_args) => {
-            if validate_generator_args(gen_args) {
-                generate_password(gen_args.length);
+            match validate_generator_args(gen_args) {
+                Ok(valid) => { generate_password(valid.length) },
+                Err(message) => { panic!("{message}") }
             }
         },
         Commands::Version => {
@@ -42,13 +43,11 @@ fn main() {
     }
 }
 
-// TODO: switch to -> Result<Ok, Err(String)>
-fn validate_generator_args(gen_args: &GenerateArgs) -> bool {
+fn validate_generator_args(gen_args: &GenerateArgs) -> Result<&GenerateArgs, String> {
     let length = gen_args.length;
     if length < 1 || length > 256 {
-        println!("length should be between 1 and 256");
-        false
+        Err(String::from("length should be between 1 and 256"))
     } else {
-        true
+        Ok(gen_args)
     }
 }
