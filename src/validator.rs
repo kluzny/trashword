@@ -1,4 +1,4 @@
-use crate::GenerateArgs;
+use crate::commands::GenerateArgs;
 
 pub fn validate_generator_args(gen_args: &GenerateArgs) -> Result<&GenerateArgs, String> {
     let length = gen_args.length;

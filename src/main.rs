@@ -2,21 +2,30 @@ pub mod secure;
 pub mod encoder;
 pub mod validator;
 pub mod clipboard;
+pub mod commands;
 
-use clap::{Args, Parser, Subcommand, crate_version};
-use crate::secure::secure_pass;
+use clap::{Parser, Subcommand, crate_version};
+use crate::secure::generate_password;
 use crate::validator::validate_generator_args;
 use crate::clipboard::copy;
+use crate::commands::{AuthArgs, GenerateArgs};
 
 #[derive(Parser)]
 #[command(author, about, long_about = None)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
+
+    /// Increase the verbosity
+    #[arg(long, short = 'v', action = clap::ArgAction::Count)]
+    verbose: u8,
 }
 
 #[derive(Subcommand)]
 enum Commands {
+    /// Generate a 'secure' random alphanumeric string
+    Auth(AuthArgs),
+
     /// Generate a 'secure' random alphanumeric string
     Generate(GenerateArgs),
 
@@ -24,25 +33,17 @@ enum Commands {
     Version,
 }
 
-#[derive(Args)]
-pub struct GenerateArgs {
-    ///  Character length
-    #[arg(default_value_t = 20)]
-    length: u16,
-
-    /// send to your clipboard instead of STDOUT
-    #[arg(long, short='c', default_value_t = false)]
-    clipboard: bool,
-}
-
 fn main() {
     let cli: Cli = Cli::parse();
 
     match &cli.command {
+        Commands::Auth(auth_args) => {
+            todo!("");
+        },
         Commands::Generate(gen_args) => {
             match validate_generator_args(gen_args) {
                 Ok(valid) => {
-                    let password =  secure_pass(valid.length);
+                    let password =  generate_password(valid.length);
                     if valid.clipboard {
                         copy(password);
                     } else {

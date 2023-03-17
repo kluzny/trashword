@@ -1,7 +1,7 @@
 use crate::encoder::encode;
 use rand::{rngs::StdRng, RngCore, SeedableRng};
 
-pub fn secure_pass(length: u16) -> String {
+pub fn generate_password(length: u16) -> String {
     // TODO: should error if we exhaust the buffer
     // or more robustly create buffers as needed
     let buffer = random_bytes();
@@ -22,13 +22,13 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_secure_pass() {
-        assert_eq!(secure_pass(1).len(), 1);
-        assert_eq!(secure_pass(256).len(), 256);
+    fn test_generate_password() {
+        assert_eq!(generate_password(1).len(), 1);
+        assert_eq!(generate_password(256).len(), 256);
     }
 
     #[test]
-    fn test_secure_pass_is_not_idempotent() {
-        assert_ne!(secure_pass(256), secure_pass(256)) //  all knowledge degenerates into probability - hume
+    fn test_generate_password_is_not_idempotent() {
+        assert_ne!(generate_password(256), generate_password(256)) //  all knowledge degenerates into probability - hume
     }
 }
