@@ -1,8 +1,10 @@
 pub mod secure;
 pub mod encoder;
+pub mod validator;
 
 use clap::{Args, Parser, Subcommand, crate_version};
 use crate::secure::generate_password;
+use crate::validator::validate_generator_args;
 
 #[derive(Parser)]
 #[command(author, about, long_about = None)]
@@ -21,7 +23,7 @@ enum Commands {
 }
 
 #[derive(Args)]
-struct GenerateArgs {
+pub struct GenerateArgs {
     ///  Character length
     #[arg(default_value_t = 20)]
     length: u16,
@@ -40,14 +42,5 @@ fn main() {
         Commands::Version => {
             println!(crate_version!())
         }
-    }
-}
-
-fn validate_generator_args(gen_args: &GenerateArgs) -> Result<&GenerateArgs, String> {
-    let length = gen_args.length;
-    if length < 1 || length > 256 {
-        Err(String::from("length should be between 1 and 256"))
-    } else {
-        Ok(gen_args)
     }
 }
