@@ -1,14 +1,16 @@
-pub mod secure;
-pub mod encoder;
-pub mod validator;
+pub mod auth;
 pub mod clipboard;
 pub mod commands;
+pub mod encoder;
+pub mod secure;
+pub mod validator;
 
 use clap::{Parser, Subcommand, crate_version};
-use crate::secure::generate_password;
-use crate::validator::validate_generator_args;
 use crate::clipboard::copy;
 use crate::commands::{AuthArgs, GenerateArgs};
+use crate::secure::generate_password;
+use crate::validator::validate_generator_args;
+use crate::auth::build_credentials;
 
 #[derive(Parser)]
 #[command(author, about, long_about = None)]
@@ -38,12 +40,7 @@ fn main() {
 
     match &cli.command {
         Commands::Auth(auth_args) => {
-            // TODO hide behind versbose
-            if auth_args.domain.len() > 0 {
-                println!("Generating password for {}...", auth_args.domain);
-            } else {
-                println!("Generating password ...");
-            }
+            build_credentials(auth_args);
         },
         Commands::Generate(gen_args) => {
             match validate_generator_args(gen_args) {
