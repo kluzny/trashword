@@ -23,7 +23,7 @@ struct Cli {
 
 #[derive(Subcommand)]
 enum Commands {
-    /// Generate a 'secure' random alphanumeric string
+    /// Generate a deterministic password from the supplied secret
     Auth(AuthArgs),
 
     /// Generate a 'secure' random alphanumeric string
@@ -38,7 +38,12 @@ fn main() {
 
     match &cli.command {
         Commands::Auth(auth_args) => {
-            todo!("");
+            // TODO hide behind versbose
+            if auth_args.domain.len() > 0 {
+                println!("Generating password for {}...", auth_args.domain);
+            } else {
+                println!("Generating password ...");
+            }
         },
         Commands::Generate(gen_args) => {
             match validate_generator_args(gen_args) {

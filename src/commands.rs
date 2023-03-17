@@ -3,7 +3,7 @@ use clap::{Args};
 #[derive(Args)]
 pub struct AuthArgs {
     /// A domain or hostname
-    #[arg()]
+    #[arg(default_value_t = String::new())]
     pub domain: String,
 
     /// send to your clipboard instead of STDOUT
