@@ -1,4 +1,17 @@
-use clap::{Args};
+use clap::{Args, Subcommand};
+
+#[derive(Subcommand)]
+pub enum Commands {
+    /// Generate a deterministic password from the supplied secret
+    Auth(AuthArgs),
+
+    /// Generate a 'secure' random alphanumeric string
+    Generate(GenerateArgs),
+
+    /// Print the version and exit
+    Version,
+}
+
 
 #[derive(Args)]
 pub struct AuthArgs {

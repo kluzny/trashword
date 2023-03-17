@@ -5,12 +5,12 @@ pub mod encoder;
 pub mod secure;
 pub mod validator;
 
-use clap::{Parser, Subcommand, crate_version};
+use clap::{Parser, crate_version};
+use crate::auth::build_credentials;
 use crate::clipboard::copy;
-use crate::commands::{AuthArgs, GenerateArgs};
+use crate::commands::Commands;
 use crate::secure::generate_password;
 use crate::validator::validate_generator_args;
-use crate::auth::build_credentials;
 
 #[derive(Parser)]
 #[command(author, about, long_about = None)]
@@ -21,18 +21,6 @@ struct Cli {
     /// Increase the verbosity
     #[arg(long, short = 'v', action = clap::ArgAction::Count)]
     verbose: u8,
-}
-
-#[derive(Subcommand)]
-enum Commands {
-    /// Generate a deterministic password from the supplied secret
-    Auth(AuthArgs),
-
-    /// Generate a 'secure' random alphanumeric string
-    Generate(GenerateArgs),
-
-    /// Print the version and exit
-    Version,
 }
 
 fn main() {
