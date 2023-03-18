@@ -33,7 +33,8 @@ pub fn build_credentials(auth_args: &AuthArgs) {
 
     let hashed = hash(key);
 
-    println!("{hashed}");
+    // TODO: respect --clipboard
+    println!("{hashed}"); // TODO: verbose 2 or 3 if clipboardin'
 }
 
 // TODO would be neat if we could just grab this from flag, stdin, or ENV:
