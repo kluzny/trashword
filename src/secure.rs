@@ -5,13 +5,13 @@ pub fn generate_password(length: u16) -> String {
     // TODO: should error if we exhaust the buffer
     // or more robustly create buffers as needed
     let buffer = random_bytes();
-    let subset = &buffer[0 .. usize::from(length)];
+    let subset = &buffer[0..usize::from(length)];
 
     encode(subset)
 }
 
 fn random_bytes() -> [u8; 256] {
-    let buffer: &mut [u8;256] = &mut [0; 256];
+    let buffer: &mut [u8; 256] = &mut [0; 256];
     let mut csrng = StdRng::from_entropy();
     csrng.fill_bytes(buffer);
     *buffer

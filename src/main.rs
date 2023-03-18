@@ -4,6 +4,7 @@ pub mod commands;
 pub mod encoder;
 pub mod secure;
 pub mod validator;
+pub mod hash;
 
 use clap::{Parser, crate_version};
 use crate::auth::build_credentials;

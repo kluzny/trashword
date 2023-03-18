@@ -12,14 +12,13 @@ pub enum Commands {
     Version,
 }
 
-
 #[derive(Args)]
 pub struct AuthArgs {
     /// Optional domain or hostname
     #[arg(short='d', long)]
     pub domain: Option<String>,
 
-    /// Optional user or username
+    /// Optional username or email
     #[arg(short='u', long)]
     pub user: Option<String>,
 
