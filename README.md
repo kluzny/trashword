@@ -12,7 +12,7 @@ Securely storing passwords is a challenging endeavor, so instead of that we will
 
 ```bash
 $ trashword auth
- master key: <super secret goes here>
+master key: <super secret goes here>
 e3Cpz2pWeyX8aLjSgEBTGjFSQ0M5xDcQFkHdUMjfWyQ
 ```
 
