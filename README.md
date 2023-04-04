@@ -8,7 +8,7 @@ This is a toy. This is not a good way to manage your passwords. Hic sunt dracone
 
 ## Mechanisms
 
-Securely storing passwords is a challenging endeavor, so instead of that we will just generate them. Using a user provide secret we generate a secure hash that is suitable for use as a password. This process is secure-ish, and deteministic. Under the hood we are building salted and hashed composite keys using your provided configuration and secret to generate a strong unreversible password. With minimal configuration data and a strong master key, the potential for password collisions is astronomical.
+Securely storing passwords is a challenging endeavor, so instead of that we will just generate them. Using a user provide secret we generate a secure hash that is suitable for use as a password. This process is secure-ish, and deterministic. Under the hood we are building salted and hashed composite keys using your provided configuration and secret to generate a strong unreversible password. With minimal configuration data and a strong master key, the potential for password collisions is astronomical.
 
 ```bash
 $ trashword auth
