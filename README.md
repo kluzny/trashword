@@ -74,11 +74,14 @@ This is not really a question and left as an exercise for the reader.
 
 ## TODO
 
-* Develop more idiomatic rust
+* Look into config-rs for toml support
+* Configuration format similar to sshd_config that can store default flags by host
+* Look into thiserror et all
 * Better test coverage over the public api
 * Support for a wider range of password inputs, e.g. ENV variables, STDIN
-* Configuration files similar to sshd_config that can store default flags by host
 * Output encodings to allow for password generation with specific characteristics like mixed case, special characters, and other common password format requirements
+* Develop more idiomatic rust
+* Better todo structure
 
 ## Addendum
 
